@@ -75,33 +75,6 @@ const CLOUDINARY_CLOUD_NAME = 'dlosu5b6j';
 const CLOUDINARY_UPLOAD_PRESET = 'Cooking23';
 const IMGUR_CLIENT_ID = '';
 
-// ================ 预加载本地图片 ================
-// 从本地 images 文件夹自动加载所有菜品图片
-function preloadLocalImages() {
-    if (!state.menu || state.menu.length === 0) return;
-    
-    // 对每个菜品，尝试加载相应的图片
-    state.menu.forEach(dish => {
-        const imagePath = `images/${dish.name}.jpg`;
-        fetch(imagePath)
-            .then(response => {
-                if (response.ok) return response.blob();
-                throw new Error('图片不存在');
-            })
-            .then(blob => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    localImageManager.addLocalImage(dish.id, `${dish.name}.jpg`, e.target.result);
-                    console.log(`✅ 已加载图片: ${dish.name}`);
-                };
-                reader.readAsDataURL(blob);
-            })
-            .catch(err => {
-                // 静默处理不存在的图片
-            });
-    });
-}
-
 // ================ 本地图片文件夹处理 ================
 // 批量处理本地图片文件，自动匹配菜品名和图片文件名
 function processLocalImageBatch(files) {
@@ -182,119 +155,119 @@ const defaultCategory = "主菜";
 
 const initialMenu = [
     { 
-        id: 1, name: '全能炒面', price: 19, category: '主食', stock: 99, img: '',
+        id: 1, name: '全能炒面', price: 19, category: '主食', stock: 99, img: 'images/全能炒面.jpg',
         description: '香喷喷的炒面，配菜丰富，是快手美食',
         method: '1. 面条煮软沥干 2. 油热下锅快炒 3. 加入配菜翻炒 4. 调味即可',
         ingredients: '面条200g、蔬菜、鸡蛋、豉油',
         spicy: '', taste: '香', options: []
     },
     { 
-        id: 2, name: '可乐鸡翅', price: 19, category: '主菜', stock: 99, img: '',
+        id: 2, name: '可乐鸡翅', price: 19, category: '主菜', stock: 99, img: 'images/可乐鸡翅.jpg',
         description: '甜蜜的可乐味，鸡翅嫩滑，大人小孩都爱',
         method: '1. 鸡翅焯水 2. 可乐加酱油炖40分钟 3. 收汁即可',
         ingredients: '鸡翅600g、可乐、酱油、生姜',
         spicy: '', taste: '甜蜜', options: []
     },
     { 
-        id: 3, name: '小蒋炒米粉', price: 19, category: '主食', stock: 99, img: '',
+        id: 3, name: '小蒋炒米粉', price: 19, category: '主食', stock: 99, img: 'images/小蒋炒米粉.jpg',
         description: '经典炒米粉，火候足，粒粒分明',
         method: '1. 米粉泡软 2. 高温炒香 3. 加调味料翻炒 4. 装盘即可',
         ingredients: '米粉200g、豆芽、葱段、酱油',
         spicy: '微辣', taste: '香', options: []
     },
     { 
-        id: 4, name: '清炒时蔬', price: 19, category: '素菜', stock: 99, img: '',
+        id: 4, name: '清炒时蔬', price: 19, category: '素菜', stock: 99, img: 'images/清炒时蔬.jpg',
         description: '精选当季蔬菜，清炒清甜，健康美味',
         method: '1. 蔬菜切块 2. 油热下锅快炒 3. 加盐调味即可',
         ingredients: '油麦菜、胡萝卜、黄瓜、玉米粒',
         spicy: '', taste: '清甜', options: []
     },
     { 
-        id: 5, name: '焦香排骨', price: 19, category: '主菜', stock: 99, img: '',
+        id: 5, name: '焦香排骨', price: 19, category: '主菜', stock: 99, img: 'images/焦香排骨.jpg',
         description: '外焦里嫩的排骨，香气扑鼻',
         method: '1. 排骨腌制30分钟 2. 高温炸至焦香 3. 裹蜜汁沙司 4. 装盘即可',
         ingredients: '排骨600g、蜂蜜、酱油、生姜、蒜',
         spicy: '', taste: '焦香', options: []
     },
     { 
-        id: 6, name: '爆辣猪耳', price: 19, category: '主菜', stock: 99, img: '',
+        id: 6, name: '爆辣猪耳', price: 19, category: '主菜', stock: 99, img: 'images/爆辣猪耳.jpg',
         description: '脆爽猪耳朵，麻辣开胃，下酒好菜',
         method: '1. 猪耳焯水 2. 冷水过凉 3. 切丝加麻辣料拌匀 4. 冷藏后享用',
         ingredients: '猪耳200g、干辣椒、花椒、醋、盐',
         spicy: '重辣', taste: '麻辣', options: []
     },
     { 
-        id: 7, name: '独门炒饭', price: 19, category: '主食', stock: 99, img: '',
+        id: 7, name: '独门炒饭', price: 19, category: '主食', stock: 99, img: 'images/独门炒饭.jpg',
         description: '秘制配方，米粒飘香，一口一个惊喜',
         method: '1. 米饭冷硬最佳 2. 高温快炒 3. 加入肉类和蔬菜 4. 调味出锅',
         ingredients: '米饭200g、鸡蛋、叉烧、豌豆、胡萝卜',
         spicy: '', taste: '香', options: []
     },
     { 
-        id: 8, name: '粉藕排骨汤', price: 19, category: '汤品', stock: 99, img: '',
+        id: 8, name: '粉藕排骨汤', price: 19, category: '汤品', stock: 99, img: 'images/粉藕排骨汤.jpg',
         description: '清汤汤底，莲藕软粉，排骨鲜美',
         method: '1. 排骨焯水 2. 清水煮30分钟 3. 加入莲藕再煮20分钟 4. 调味即可',
         ingredients: '排骨300g、莲藕200g、红枣、冰糖、盐',
         spicy: '', taste: '清甜', options: []
     },
     { 
-        id: 9, name: '老干妈炒火腿', price: 19, category: '主菜', stock: 99, img: '',
+        id: 9, name: '老干妈炒火腿', price: 19, category: '主菜', stock: 99, img: 'images/老干妈炒火腿.jpg',
         description: '老干妈的辣味，火腿的香味，完美搭配',
         method: '1. 火腿切块 2. 油热炒香 3. 加老干妈酱炒匀 4. 装盘即可',
         ingredients: '火腿200g、老干妈豆豉酱、青葱、生姜',
         spicy: '中辣', taste: '豉香', options: []
     },
     { 
-        id: 10, name: '蒋氏红烧肉', price: 19, category: '主菜', stock: 99, img: '',
+        id: 10, name: '蒋氏红烧肉', price: 19, category: '主菜', stock: 99, img: 'images/蒋氏红烧肉.jpg',
         description: '秘制酱料，入口即化，肥而不腻',
         method: '1. 猪肉焯水 2. 冰糖炒糖色 3. 加秘制酱料炖45分钟 4. 收汁出锅',
         ingredients: '猪肋条500g、冰糖、酱油、八角、桂皮、生姜',
         spicy: '', taste: '甜咸', options: []
     },
     { 
-        id: 11, name: '虫草花炖鸡汤', price: 19, category: '汤品', stock: 99, img: '',
+        id: 11, name: '虫草花炖鸡汤', price: 19, category: '汤品', stock: 99, img: 'images/虫草花炖鸡汤.jpg',
         description: '名贵虫草花，滋补鸡汤，养生佳品',
         method: '1. 鸡块焯水 2. 清水煮30分钟 3. 加虫草花再炖20分钟 4. 调味即可',
         ingredients: '鸡块400g、虫草花20g、红枣、冰糖、盐',
         spicy: '', taste: '清鲜', options: []
     },
     { 
-        id: 12, name: '辣椒肉末盖码粉', price: 19, category: '主食', stock: 99, img: '',
+        id: 12, name: '辣椒肉末盖码粉', price: 19, category: '主食', stock: 99, img: 'images/辣椒肉末盖码粉.jpg',
         description: '米粉软滑，肉末鲜香，辣椒提味',
         method: '1. 米粉烫软 2. 肉末炒香加辣椒 3. 浇在米粉上 4. 调味即可',
         ingredients: '米粉200g、肉末150g、辣椒油、葱段、蒜',
         spicy: '中辣', taste: '辣香', options: []
     },
     { 
-        id: 13, name: '酸萝卜牛肚', price: 19, category: '主菜', stock: 99, img: '',
+        id: 13, name: '酸萝卜牛肚', price: 19, category: '主菜', stock: 99, img: 'images/酸萝卜牛肚.jpg',
         description: '爽脆牛肚，酸爽萝卜，开胃一绝',
         method: '1. 牛肚焯水切丝 2. 酸萝卜切块 3. 快速炒匀 4. 调味即可',
         ingredients: '牛肚200g、酸萝卜200g、干辣椒、醋、盐',
         spicy: '中辣', taste: '酸辣', options: []
     },
     { 
-        id: 14, name: '酸辣土豆丝', price: 19, category: '素菜', stock: 99, img: '',
+        id: 14, name: '酸辣土豆丝', price: 19, category: '素菜', stock: 99, img: 'images/酸辣土豆丝.jpg',
         description: '脆口土豆丝，酸辣开胃，下饭一绝',
         method: '1. 土豆切丝浸水 2. 高温油炸至脆 3. 加醋、辣椒炒匀 4. 装盘即可',
         ingredients: '土豆500g、醋、干辣椒、花椒、盐',
         spicy: '中辣', taste: '酸辣', options: []
     },
     { 
-        id: 15, name: '酸辣藕丁', price: 19, category: '素菜', stock: 99, img: '',
+        id: 15, name: '酸辣藕丁', price: 19, category: '素菜', stock: 99, img: 'images/酸辣藕丁.jpg',
         description: '莲藕爽脆，酸辣诱人，下饭首选',
         method: '1. 莲藕切丁浸水 2. 高温快炒 3. 加醋和辣椒翻炒 4. 装盘即可',
         ingredients: '莲藕300g、醋、干辣椒、花椒、盐',
         spicy: '中辣', taste: '酸辣', options: []
     },
     { 
-        id: 16, name: '青椒炒蛋', price: 19, category: '主菜', stock: 99, img: '',
+        id: 16, name: '青椒炒蛋', price: 19, category: '主菜', stock: 99, img: 'images/青椒炒蛋.jpg',
         description: '嫩滑鸡蛋，爽脆青椒，家常快手菜',
         method: '1. 鸡蛋炒散 2. 青椒切块 3. 快速炒匀 4. 调味即可',
         ingredients: '鸡蛋3个、青椒200g、盐、油',
         spicy: '', taste: '清香', options: []
     },
     { 
-        id: 17, name: '鲜香鱼汤', price: 19, category: '汤品', stock: 99, img: '',
+        id: 17, name: '鲜香鱼汤', price: 19, category: '汤品', stock: 99, img: 'images/鲜香鱼汤.jpg',
         description: '鱼汤鲜美，豆腐软嫩，热汤暖胃',
         method: '1. 鱼块焯水 2. 清水煮30分钟 3. 加豆腐再煮10分钟 4. 调味即可',
         ingredients: '鲜鱼400g、豆腐200g、生姜、葱段、盐',
@@ -1632,12 +1605,6 @@ window.onload = async () => {
     await saveRemoteData();
     
     renderApp();
-    
-    // 预加载本地图片
-    preloadLocalImages();
-    
-    // 每 2 秒重新渲染一次，确保图片显示
-    setTimeout(() => { renderApp(); }, 1000);
     
     setInterval(checkRemoteUpdates, 5000);
 };
