@@ -95,7 +95,7 @@ const IMGUR_CLIENT_ID = '';
 
 
 const categoryIcons = {
-  '主菜': '🥘', '海鲜': '🦞', '素菜': '🥦', '主食': '🍚', '甜品': '🍨'
+  '主菜': '🥘', '海鲜': '🦞', '素菜': '🥦', '主食': '🍚', '甜品': '🍨', '汤品': '🍜', '小食': '🥢'
 };
 const defaultCategory = "主菜";
 
@@ -105,62 +105,105 @@ const initialMenu = [
         description: '选用上等猪肋条，用秘制酱料慢火炖制，入味可口',
         method: '1. 猪肉焯水后沥干 2. 冰糖炒糖色 3. 放入肉炒香 4. 加酱油、料酒炖40分钟',
         ingredients: '猪肋条500g、酱油、冰糖、八角、桂皮',
-        options: [
-            { name: '加辣', price: 0 },
-            { name: '香菜多点', price: 0 },
-            { name: '葱多点', price: 0 }
-        ]
+        spicy: '', taste: '', options: []
     },
     { 
         id: 2, name: '蒜蓉蒸扇贝', price: 68, category: '海鲜', stock: 15, img: '',
         description: '新鲜扇贝铺满香蒜和粉丝，蒸至鲜嫩多汁',
         method: '1. 扇贝清洗沥干 2. 铺粉丝垫底 3. 撒蒜蓉和油 4. 蒸8-10分钟即可',
         ingredients: '新鲜扇贝8个、蒜15粒、粉丝100g、青葱',
-        options: [
-            { name: '不要粉丝', price: 0 },
-            { name: '加香葱', price: 0 }
-        ]
+        spicy: '', taste: '', options: []
     },
     { 
         id: 3, name: '清炒时蔬', price: 22, category: '素菜', stock: 20, img: '',
         description: '精选当季蔬菜，清炒清甜，健康美味',
         method: '1. 蔬菜切块 2. 油热下锅快炒 3. 加盐调味即可',
         ingredients: '油麦菜、胡萝卜、黄瓜、玉米粒',
-        options: [
-            { name: '加辣', price: 0 },
-            { name: '清淡', price: 0 }
-        ]
+        spicy: '', taste: '', options: []
     },
     { 
         id: 4, name: '酸辣土豆丝', price: 18, category: '素菜', stock: 25, img: '',
         description: '脆口土豆丝，酸辣开胃，下饭一绝',
         method: '1. 土豆切丝浸水 2. 高温油炸至脆 3. 加醋、辣椒炒匀',
         ingredients: '土豆500g、醋、干辣椒、花椒',
-        options: [
-            { name: '特别辣', price: 0 },
-            { name: '少辣', price: 0 },
-            { name: '香菜多', price: 0 }
-        ]
+        spicy: '中辣', taste: '酸辣', options: []
     },
     { 
         id: 5, name: '皮蛋瘦肉粥', price: 15, category: '主食', stock: 30, img: '',
         description: '软糯粥配皮蛋和瘦肉，营养丰富',
         method: '1. 米洗净煮粥 2. 加猪瘦肉和皮蛋 3. 煮至软糯，撒青葱即可',
         ingredients: '米、瘦肉200g、皮蛋2个、青葱',
-        options: [
-            { name: '多肉', price: 5 },
-            { name: '清淡', price: 0 }
-        ]
+        spicy: '', taste: '', options: []
     },
     { 
         id: 6, name: '香草冰淇淋', price: 20, category: '甜品', stock: 50, img: '',
         description: '顺滑香甜的冰淇淋，夏日清凉必选',
         method: '1. 蛋黄和糖打发 2. 加淡奶油混合 3. 冷冻6小时即可',
         ingredients: '蛋黄、牛奶、淡奶油、香草精',
-        options: [
-            { name: '加坚果碎', price: 2 },
-            { name: '加巧克力酱', price: 2 }
-        ]
+        spicy: '', taste: '', options: []
+    },
+    { 
+        id: 7, name: '番茄鸡蛋面', price: 16, category: '主食', stock: 35, img: '',
+        description: '家常面食，酸酸的番茄配软嫩鸡蛋，清汤爽口',
+        method: '1. 鸡蛋炒散 2. 番茄切块炒出汁 3. 下面条煮2分钟 4. 调味即可',
+        ingredients: '鸡蛋2个、番茄2个、面条100g、青葱',
+        spicy: '', taste: '酸鲜', options: []
+    },
+    { 
+        id: 8, name: '宫保鸡丁', price: 38, category: '主菜', stock: 18, img: '',
+        description: '传统家常菜，鸡丁爽脆，花生香脆，酸辣适口',
+        method: '1. 鸡胸肉切丁 2. 炒至变白 3. 加花生和辣椒 4. 调味即可',
+        ingredients: '鸡胸肉300g、花生100g、干辣椒、醋、糖',
+        spicy: '中辣', taste: '酸辣', options: []
+    },
+    { 
+        id: 9, name: '麻婆豆腐', price: 28, category: '主菜', stock: 22, img: '',
+        description: '家常经典，豆腐软嫩，麻辣味重，下饭绝品',
+        method: '1. 豆腐切块 2. 肉末炒香 3. 加豆腐和麻辣酱 4. 炖5分钟',
+        ingredients: '豆腐400g、猪肉末150g、豆瓣酱、花椒、辣椒油',
+        spicy: '重辣', taste: '麻辣', options: []
+    },
+    { 
+        id: 10, name: '鱼香肉丝', price: 32, category: '主菜', stock: 20, img: '',
+        description: '鱼香味型经典，肉丝爽脆，酸辣开胃',
+        method: '1. 猪肉切丝 2. 快速炒至变白 3. 加入鱼香酱炒匀 4. 装盘即可',
+        ingredients: '猪肉300g、豆瓣酱、醋、糖、干辣椒、青葱',
+        spicy: '中辣', taste: '鱼香', options: []
+    },
+    { 
+        id: 11, name: '辣子鸡', price: 42, category: '主菜', stock: 15, img: '',
+        description: '四川家常菜，香辣脆，满眼都是红辣椒，重口味',
+        method: '1. 鸡块炸至辣脆 2. 干辣椒炒香 3. 加入鸡块翻炒 4. 加花椒盐即可',
+        ingredients: '鸡块600g、干辣椒150g、花椒、姜蒜',
+        spicy: '重辣', taste: '麻辣', options: []
+    },
+    { 
+        id: 12, name: '番茄汤', price: 12, category: '汤品', stock: 40, img: '',
+        description: '清汤汤底，番茄酸甜，清爽开胃',
+        method: '1. 番茄切块 2. 烧水煮番茄 3. 加盐调味即可',
+        ingredients: '番茄3个、清水1升、盐',
+        spicy: '', taste: '酸甜', options: []
+    },
+    { 
+        id: 13, name: '鸡汤', price: 15, category: '汤品', stock: 30, img: '',
+        description: '家常鸡汤，清汤鲜美，温暖舒适',
+        method: '1. 鸡块焯水 2. 高汤煮30分钟 3. 加盐调味即可',
+        ingredients: '鸡块400g、清水2升、红枣、冰糖',
+        spicy: '', taste: '清鲜', options: []
+    },
+    { 
+        id: 14, name: '炸春卷', price: 14, category: '小食', stock: 50, img: '',
+        description: '酥脆外壳，馅料丰富，香喷喷的家常小食',
+        method: '1. 春卷皮包馅 2. 油温180度炸2分钟 3. 沥油即可',
+        ingredients: '春卷皮、肉末、蔬菜、鸡蛋',
+        spicy: '', taste: '', options: []
+    },
+    { 
+        id: 15, name: '炸丸子', price: 12, category: '小食', stock: 45, img: '',
+        description: '家常零食，外脆里嫩，热呼呼的',
+        method: '1. 肉末混合调料擀圆 2. 油温165度炸3分钟 3. 沥油即可',
+        ingredients: '猪肉末300g、淀粉、鸡蛋、盐',
+        spicy: '', taste: '', options: []
     }
 ];
 
@@ -172,9 +215,11 @@ let state = {
     isLoaded: false,
     currentView: "customer", // "customer"|"kitchen"
     customerTab: "menu", // "menu" | "cart" | "orders"
+    menuCategory: null, // 选中的菜单分类
     kitchenTab: "orders", // "orders" | "trash"
     menuEditDialog: null,
-    dishDetailDialog: null // for viewing dish details
+    dishDetailDialog: null, // for viewing dish details
+    collapsedOrderDates: {} // 折叠订单的日期状态
 };
 // =================== 云端数据同步 ====================
 async function loadRemoteData() {
@@ -256,6 +301,7 @@ function renderCustomerTab() {
     attachCartEventListeners();
   } else if (state.customerTab === "orders") {
     document.getElementById('content-area').innerHTML = renderOrdersTab();
+    attachOrdersEventListeners();
   }
   updateTabBarActive();
   updateTabBadges();
@@ -307,37 +353,59 @@ function renderMenuTab() {
         acc[item.category].push(item);
         return acc;
     }, {});
-    return Object.entries(menuByCategory).map(([category, items]) => `
-        <div class="mb-7">
-        <div class="flex items-center mb-4 select-none sticky top-0 bg-white py-2 z-10">
-          <span class="text-2xl mr-2">${categoryIcons[category] || ''}</span>
-          <span class="text-xl font-bold text-indigo-700">${category}</span>
+    
+    const categories = Object.keys(menuByCategory).sort((a, b) => (categoryIcons[a] || '').localeCompare(categoryIcons[b] || ''));
+    const activeCategory = state.menuCategory || categories[0];
+    
+    return `
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="sticky top-0 bg-white z-20 py-2 border-b shadow-sm">
+        <div class="flex gap-2 overflow-x-auto px-3 pb-2">
+          ${categories.map(cat => `
+            <button class="category-btn px-3 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all ${activeCategory === cat ? 'bg-indigo-600 text-white shadow-md' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}" data-category="${cat}">
+              ${categoryIcons[cat] || ''} ${cat}
+            </button>
+          `).join('')}
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        ${items.map(item => {
-            const imgSrc = (item.img || '').trim() ? item.img : (getMenuImageFromLocal(item.id) || 'https://via.placeholder.com/150?text='+encodeURIComponent(item.name));
+      </div>
+      
+      <div class="p-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+        ${(menuByCategory[activeCategory] || []).map(item => {
+            const imgSrc = (item.img || '').trim() ? item.img : (getMenuImageFromLocal(item.id) || 'https://via.placeholder.com/120?text='+encodeURIComponent(item.name));
             return `
-          <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full card-raise">
-            <div class="relative h-40 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center border-b">
-              <img src="${imgSrc}" alt="${item.name}" class="w-32 h-32 object-cover rounded" loading="lazy" />
-              <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">库存 ${item.stock}</span>
+          <div class="bg-white rounded-lg shadow hover:shadow-md transition-all overflow-hidden flex flex-col cursor-pointer group">
+            <div class="relative h-24 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center border-b overflow-hidden">
+              <img src="${imgSrc}" alt="${item.name}" class="w-20 h-20 object-cover rounded group-hover:scale-110 transition-transform" loading="lazy" />
+              <span class="absolute top-1 right-1 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">库存${item.stock}</span>
             </div>
-            <div class="p-4 flex flex-col flex-grow">
-              <h3 class="text-lg font-bold mb-1 text-gray-800">${item.name}</h3>
-              <p class="text-xs text-gray-500 mb-2 line-clamp-2">${item.description}</p>
-              <span class="text-lg font-extrabold text-red-600 mb-3">¥${item.price}</span>
-              <div class="mt-auto flex gap-2">
-                <button data-id="${item.id}" class="view-dish-btn flex-1 px-2 py-2 text-indigo-600 border border-indigo-600 rounded-lg transition hover:bg-indigo-50 text-sm font-semibold">详情</button>
-                <button data-id="${item.id}" class="add-to-cart-btn flex-1 px-2 py-2 text-white rounded-lg bg-indigo-500 transition hover:bg-indigo-600 text-sm font-semibold">加入购物车</button>
+            <div class="p-2 flex flex-col flex-grow">
+              <h3 class="text-sm font-bold mb-0.5 text-gray-800 line-clamp-1">${item.name}</h3>
+              <p class="text-xs text-gray-500 mb-1 line-clamp-1">${item.description}</p>
+              <span class="text-sm font-extrabold text-red-600 mb-2">¥${item.price}</span>
+              <div class="mt-auto flex gap-1">
+                <button data-id="${item.id}" class="view-dish-btn flex-1 px-1 py-1 text-indigo-600 border border-indigo-600 rounded text-xs font-semibold hover:bg-indigo-50">详情</button>
+                <button data-id="${item.id}" class="add-to-cart-btn flex-1 px-1 py-1 text-white rounded bg-indigo-500 hover:bg-indigo-600 text-xs font-semibold">加入</button>
               </div>
             </div>
           </div>
         `;
         }).join('')}
-        </div></div>
-      `).join('') || `<div class="p-10 text-center text-gray-400">暂无菜品</div>`;
+        </div>
+        ${(menuByCategory[activeCategory] || []).length === 0 ? '<div class="text-center text-gray-400 py-8">该分类暂无菜品</div>' : ''}
+      </div>
+    </div>
+    `;
 }
 function attachMenuEventListeners() {
+  // 分类按钮监听
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.onclick = () => {
+      state.menuCategory = btn.dataset.category;
+      renderApp();
+    };
+  });
+  
   document.querySelectorAll('.view-dish-btn').forEach(btn => {
     btn.onclick = () => {
       const id = btn.dataset.id;
@@ -494,6 +562,16 @@ function attachCartEventListeners() {
         };
     });
 }
+function attachOrdersEventListeners() {
+    // 订单日期折叠按钮
+    document.querySelectorAll('.order-date-btn').forEach(btn => {
+        btn.onclick = () => {
+            const date = btn.dataset.date;
+            state.collapsedOrderDates[date] = !state.collapsedOrderDates[date];
+            renderApp();
+        };
+    });
+}
 function renderOrdersTab() {
     const statusMap = { Pending: "等待制作", Processing: "制作中", Completed: "已完成" };
     if (!state.orders.length) return `<div class="p-10 text-center text-gray-400">暂无订单</div>`;
@@ -506,36 +584,42 @@ function renderOrdersTab() {
         ordersByDate[dateStr].push(o);
     });
     
-    return `<div class="max-w-2xl mx-auto w-full space-y-6">
-        ${Object.entries(ordersByDate).sort((a, b) => new Date(b[0]) - new Date(a[0])).map(([dateStr, orders]) => `
-            <div>
-              <h3 class="text-sm font-bold text-gray-600 mb-3 px-2">📅 ${dateStr}</h3>
-              <div class="space-y-3">
+    return `<div class="max-w-2xl mx-auto w-full space-y-3 p-3">
+        ${Object.entries(ordersByDate).sort((a, b) => new Date(b[0]) - new Date(a[0])).map(([dateStr, orders]) => {
+            const isCollapsed = state.collapsedOrderDates[dateStr];
+            const orderCount = orders.length;
+            return `
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <button class="order-date-btn w-full px-4 py-3 flex justify-between items-center bg-gradient-to-r from-indigo-50 to-blue-50 hover:from-indigo-100 hover:to-blue-100 transition font-semibold text-gray-800 border-b" data-date="${dateStr}">
+                <span>📅 ${dateStr} (${orderCount}个订单)</span>
+                <span class="text-lg transition-transform ${isCollapsed ? '' : 'rotate-180'}">${isCollapsed ? '▼' : '▲'}</span>
+              </button>
+              <div class="${isCollapsed ? 'hidden' : ''} space-y-2 p-3">
                 ${orders.sort((a,b) => b.timestamp - a.timestamp).map(o => `
-                    <div class="bg-white shadow rounded-xl p-4 border-l-4 ${o.status==='Completed' ? 'border-green-500' : (o.status==='Processing' ? 'border-yellow-500' : 'border-gray-400')}">
-                      <div class="flex justify-between items-start mb-3">
+                    <div class="bg-gray-50 rounded-lg p-3 border-l-4 ${o.status==='Completed' ? 'border-green-500' : (o.status==='Processing' ? 'border-yellow-500' : 'border-red-400')}">
+                      <div class="flex justify-between items-start gap-2 mb-2">
                         <div>
-                          <span class="font-bold text-lg">订单 #${o.id}</span>
-                          <span class="ml-2 px-3 py-1 text-xs rounded font-semibold ${o.status==='Completed'
+                          <span class="font-bold">订单 #${o.id}</span>
+                          <span class="ml-2 text-xs px-2 py-0.5 rounded font-semibold ${o.status==='Completed'
                             ? 'bg-green-100 text-green-700'
                             : (o.status==='Processing'
                               ? 'bg-yellow-100 text-yellow-700'
-                              : 'bg-gray-100 text-gray-600')}"
+                              : 'bg-red-100 text-red-700')}"
                           >${statusMap[o.status]||'未知'}</span>
                         </div>
                         <div class="text-right">
-                          <div class="text-indigo-600 font-black text-lg">¥${o.total}</div>
-                          <div class="text-xs text-gray-400">${new Date(o.timestamp).toLocaleTimeString()}</div>
+                          <div class="font-bold text-red-600">¥${o.total}</div>
+                          <div class="text-xs text-gray-500">${new Date(o.timestamp).toLocaleTimeString()}</div>
                         </div>
                       </div>
-                      <ul class="flex flex-wrap gap-2 text-sm mb-2">
-                        ${o.items.map(i => `<li class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full">${i.name} ×${i.quantity}</li>`).join('')}
-                      </ul>
+                      <div class="text-xs space-y-1">
+                        ${o.items.map(i => `<div class="text-gray-700">🍽️ ${i.name} ×${i.quantity}</div>`).join('')}
+                      </div>
                     </div>
                   `).join('')}
               </div>
             </div>
-        `).join('')}
+        `}).join('')}
       </div>`;
 }
 async function submitOrder() {
@@ -561,17 +645,17 @@ function renderKitchenView() {
     document.getElementById('content-area').innerHTML = `
       <div class="space-y-10">
         <section>
-          <h2 class="text-2xl font-extrabold mb-2 flex items-center"><span class="mr-2">📋</span> 菜品管理</h2>
-          ${renderKitchenMenuTable()}
-          <button id="add-dish-btn" class="mt-3 bg-green-500 hover:bg-green-600 text-white rounded px-4 py-2 font-semibold">添加菜品</button>
-        </section>
-        <section>
           <h2 class="text-2xl font-extrabold mb-2 flex items-center"><span class="mr-2">🍳</span> 订单管理</h2>
           <div class="flex gap-2 mb-4">
             <button id="kitchen-tab-orders" class="px-4 py-2 rounded font-semibold ${state.kitchenTab==='orders'?'bg-indigo-600 text-white':'bg-gray-200'}">📥 活跃订单</button>
             <button id="kitchen-tab-trash" class="px-4 py-2 rounded font-semibold ${state.kitchenTab==='trash'?'bg-indigo-600 text-white':'bg-gray-200'}">🗑️ 回收站 (${state.trash.length})</button>
           </div>
           ${state.kitchenTab === 'orders' ? renderKitchenOrders() : renderKitchenTrash()}
+        </section>
+        <section>
+          <h2 class="text-2xl font-extrabold mb-2 flex items-center"><span class="mr-2">📋</span> 菜品管理</h2>
+          ${renderKitchenMenuTable()}
+          <button id="add-dish-btn" class="mt-3 bg-green-500 hover:bg-green-600 text-white rounded px-4 py-2 font-semibold">添加菜品</button>
         </section>
       </div>
       ${renderMenuEditDialog()}
@@ -604,61 +688,67 @@ function renderKitchenMenuTable() {
 function renderKitchenOrders() {
     const statusMap = { Pending: "待处理", Processing: "制作中", Completed: "已完成" };
     
-    // 按日期和状态分组
-    const ordersByDateAndStatus = {};
+    // 按日期分组
+    const ordersByDate = {};
     state.orders.forEach(o => {
         const dateStr = new Date(o.timestamp).toLocaleDateString('zh-CN');
-        if (!ordersByDateAndStatus[dateStr]) ordersByDateAndStatus[dateStr] = { Pending: [], Processing: [], Completed: [] };
-        ordersByDateAndStatus[dateStr][o.status].push(o);
+        if (!ordersByDate[dateStr]) ordersByDate[dateStr] = [];
+        ordersByDate[dateStr].push(o);
     });
     
-    return `<div class="space-y-8">
-      ${Object.entries(ordersByDateAndStatus).sort((a, b) => new Date(b[0]) - new Date(a[0])).map(([dateStr, statuses]) => `
-        <div>
-          <h3 class="text-sm font-bold text-gray-600 mb-3 px-2">📅 ${dateStr}</h3>
-          <div class="grid md:grid-cols-3 gap-6">
-            ${['Pending', 'Processing', 'Completed'].map(status => `
-              <div>
-                <div class="font-bold mb-3 px-3 py-2 rounded ${
-                  status === 'Pending' ? 'bg-gray-100' :
-                  status === 'Processing' ? 'bg-yellow-50' :
-                  'bg-green-50'
-                }">${statusMap[status]}</div>
-                <div class="space-y-3">
-                  ${statuses[status].length > 0 ?
-                    statuses[status].sort((a, b) => b.timestamp - a.timestamp).map(o => `
-                      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition border-l-4 ${
-                        status === 'Completed' ? 'border-green-500' :
-                        status === 'Processing' ? 'border-yellow-500' :
-                        'border-red-500'
-                      }">
-                        <div class="font-bold mb-2">#${o.id}</div>
-                        <ul class="text-xs space-y-1 mb-3">
-                          ${o.items.map(i => `<li class="text-gray-700">📍 ${i.name} ×${i.quantity}</li>`).join('')}
-                        </ul>
-                        <div class="flex justify-between items-center text-xs mb-2">
-                          <span class="text-gray-500">${new Date(o.timestamp).toLocaleTimeString()}</span>
-                          <span class="font-bold text-indigo-600">¥${o.total}</span>
-                        </div>
-                        ${status !== 'Completed' ? 
-                          `<button class="order-action-btn w-full px-2 py-1 bg-indigo-600 text-white rounded text-xs font-semibold hover:bg-indigo-700 transition" data-id="${o.id}" data-action="${status==='Pending'?'start':'complete'}">
-                            ${status==='Pending'?'🔨 开始制作':'✅ 标记完成'}
-                          </button>` : 
-                          `<div class="flex gap-2">
-                            <div class="flex-1 px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-semibold text-center">✅ 已完成</div>
-                            <button class="order-delete-btn px-2 py-1 bg-red-500 text-white rounded text-xs font-semibold hover:bg-red-600" data-id="${o.id}">🗑️ 删除</button>
-                          </div>`
+    return `<div class="space-y-3">
+      ${Object.entries(ordersByDate).sort((a, b) => new Date(b[0]) - new Date(a[0])).map(([dateStr, orders]) => {
+            const isCollapsed = state.collapsedOrderDates[dateStr];
+            const statuses = { Pending: [], Processing: [], Completed: [] };
+            orders.forEach(o => statuses[o.status].push(o));
+            return `
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+              <button class="kitchen-date-btn w-full px-4 py-3 flex justify-between items-center bg-gradient-to-r from-indigo-50 to-blue-50 hover:from-indigo-100 hover:to-blue-100 transition font-semibold text-gray-800 border-b" data-date="${dateStr}">
+                <span>📅 ${dateStr} (待处理:${statuses.Pending.length} 制作中:${statuses.Processing.length} 已完成:${statuses.Completed.length})</span>
+                <span class="text-lg transition-transform ${isCollapsed ? '' : 'rotate-180'}">${isCollapsed ? '▼' : '▲'}</span>
+              </button>
+              <div class="${isCollapsed ? 'hidden' : ''} p-3">
+                <div class="grid md:grid-cols-3 gap-4">
+                  ${['Pending', 'Processing', 'Completed'].map(status => `
+                    <div>
+                      <div class="font-bold mb-2 px-3 py-2 rounded text-sm ${
+                        status === 'Pending' ? 'bg-red-100 text-red-700' :
+                        status === 'Processing' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-green-100 text-green-700'
+                      }">${statusMap[status]} (${statuses[status].length})</div>
+                      <div class="space-y-2">
+                        ${statuses[status].length > 0 ?
+                          statuses[status].sort((a, b) => b.timestamp - a.timestamp).map(o => `
+                            <div class="bg-gray-50 rounded p-3 border-l-4 ${
+                              status === 'Completed' ? 'border-green-500' :
+                              status === 'Processing' ? 'border-yellow-500' :
+                              'border-red-500'
+                            }">
+                              <div class="font-bold text-sm mb-2">#${o.id}</div>
+                              <ul class="text-xs space-y-1 mb-2">
+                                ${o.items.map(i => `<li>🍽️ ${i.name} ×${i.quantity}</li>`).join('')}
+                              </ul>
+                              <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="text-gray-500">${new Date(o.timestamp).toLocaleTimeString()}</span>
+                                <span class="font-bold text-red-600">¥${o.total}</span>
+                              </div>
+                              ${status !== 'Completed' ? 
+                                `<button class="order-action-btn w-full px-2 py-1 bg-indigo-600 text-white rounded text-xs font-semibold hover:bg-indigo-700" data-id="${o.id}" data-action="${status==='Pending'?'start':'complete'}">
+                                  ${status==='Pending'?'🔨 开始':'✅ 完成'}
+                                </button>` : 
+                                `<button class="order-delete-btn w-full px-2 py-1 bg-red-500 text-white rounded text-xs font-semibold hover:bg-red-600" data-id="${o.id}">🗑️ 删除</button>`
+                              }
+                            </div>
+                          `).join('')
+                          : `<div class="text-gray-400 text-xs italic text-center py-4">暂无${statusMap[status]}订单</div>`
                         }
                       </div>
-                    `).join('')
-                    : `<div class="text-gray-400 text-xs italic text-center py-6">暂无${statusMap[status]}订单</div>`
-                  }
+                    </div>
+                  `).join('')}
                 </div>
               </div>
-            `).join('')}
-          </div>
-        </div>
-      `).join('')}
+            </div>
+        `}).join('')}
     </div>`;
 }
 function renderKitchenTrash() {
@@ -692,42 +782,42 @@ function renderMenuEditDialog() {
     const d = state.menuEditDialog;
   const currImg = (d.img || '').trim() ? d.img : getMenuImageFromLocal(d.id);
     return `
-  <div class="fixed bg-black bg-opacity-30 z-50 left-0 top-0 right-0 bottom-0 flex justify-center items-center p-4">
-    <form id="menu-form-dialog" class="w-full max-w-md bg-white shadow-lg rounded-xl p-6 relative" enctype="multipart/form-data" autocomplete="off">
-      <h2 class="text-lg font-bold mb-3">${d.isNew?"添加":"编辑"}菜品</h2>
-      <label class="block mb-2 text-sm">菜名<input required name="name" value="${d.name||''}" class="input block border rounded w-full p-2 mt-1"></label>
-      <label class="block mb-2 text-sm">价格<input required type="number" min="0" name="price" value="${d.price||''}" class="input block border rounded w-full p-2 mt-1"></label>
-      <label class="block mb-2 text-sm">类别
-        <select name="category" class="block p-2 border rounded w-full mt-1">
+  <div class="fixed bg-black bg-opacity-30 z-50 left-0 top-0 right-0 bottom-0 flex justify-center items-center p-4 overflow-y-auto">
+    <form id="menu-form-dialog" class="w-full max-w-sm bg-white shadow-lg rounded-xl p-5 relative my-8 max-h-[90vh] overflow-y-auto" enctype="multipart/form-data" autocomplete="off">
+      <h2 class="text-lg font-bold mb-3 sticky top-0 bg-white z-10">${d.isNew?"添加":"编辑"}菜品</h2>
+      <label class="block mb-2 text-sm"><span class="font-semibold">菜名</span><input required name="name" value="${d.name||''}" class="input block border rounded w-full p-2 mt-1 text-sm"></label>
+      <label class="block mb-2 text-sm"><span class="font-semibold">价格</span><input required type="number" min="0" name="price" value="${d.price||''}" class="input block border rounded w-full p-2 mt-1 text-sm"></label>
+      <label class="block mb-2 text-sm"><span class="font-semibold">类别</span>
+        <select name="category" class="block p-2 border rounded w-full mt-1 text-sm">
         ${Object.keys(categoryIcons).map(cat=>
           `<option value="${cat}" ${d.category===cat?'selected':''}>${categoryIcons[cat]} ${cat}</option>`
         ).join("")}
         </select>
       </label>
-      <label class="block mb-2 text-sm">库存<input required type="number" min="0" name="stock" value="${d.stock||''}" class="input block border rounded w-full p-2 mt-1"></label>
-      <label class="block mb-2 text-sm">菜品描述
-        <textarea name="description" class="input block border rounded w-full p-2 mt-1" rows="2" placeholder="简要介绍菜品">${d.description||''}</textarea>
+      <label class="block mb-2 text-sm"><span class="font-semibold">库存</span><input required type="number" min="0" name="stock" value="${d.stock||''}" class="input block border rounded w-full p-2 mt-1 text-sm"></label>
+      <label class="block mb-2 text-sm"><span class="font-semibold">菜品描述</span>
+        <textarea name="description" class="input block border rounded w-full p-2 mt-1 text-sm" rows="1" placeholder="简要介绍菜品">${d.description||''}</textarea>
       </label>
-      <label class="block mb-2 text-sm">制作方法
-        <textarea name="method" class="input block border rounded w-full p-2 mt-1" rows="2">${d.method||''}</textarea>
+      <label class="block mb-2 text-sm"><span class="font-semibold">制作方法</span>
+        <textarea name="method" class="input block border rounded w-full p-2 mt-1 text-sm" rows="1">${d.method||''}</textarea>
       </label>
-      <label class="block mb-2 text-sm">原材料
-        <input name="ingredients" value="${d.ingredients||''}" class="input block border rounded w-full p-2 mt-1">
+      <label class="block mb-2 text-sm"><span class="font-semibold">原材料</span>
+        <input name="ingredients" value="${d.ingredients||''}" class="input block border rounded w-full p-2 mt-1 text-sm">
       </label>
-      <label class="block mb-2 text-sm">辣度
-        <input name="spicy" value="${d.spicy||''}" placeholder="如 微辣/中辣/重辣/不辣" class="input block border rounded w-full p-2 mt-1">
+      <label class="block mb-2 text-sm"><span class="font-semibold">辣度</span>
+        <input name="spicy" value="${d.spicy||''}" placeholder="如 微辣/中辣/重辣/不辣" class="input block border rounded w-full p-2 mt-1 text-sm">
       </label>
-      <label class="block mb-2 text-sm">口味
-        <input name="taste" value="${d.taste||''}" placeholder="如 咸鲜/酸甜/麻辣/清淡" class="input block border rounded w-full p-2 mt-1">
+      <label class="block mb-2 text-sm"><span class="font-semibold">口味</span>
+        <input name="taste" value="${d.taste||''}" placeholder="如 咸鲜/酸甜/麻辣/清淡" class="input block border rounded w-full p-2 mt-1 text-sm">
       </label>
-      <label class="block mb-3 text-sm">菜品图片
-        <input name="imgfile" type="file" accept="image/*" class="block mt-2">
-        ${currImg?`<img src="${currImg}" class="mt-2 block w-24 h-24 object-cover border rounded">`:''}
+      <label class="block mb-3 text-sm"><span class="font-semibold">菜品图片</span>
+        <input name="imgfile" type="file" accept="image/*" class="block mt-2 text-xs">
+        ${currImg?`<img src="${currImg}" class="mt-2 block w-20 h-20 object-cover border rounded">`:''}
         <p class="text-xs text-gray-500 mt-1">若配置了图片托管（Cloudinary/Imgur），图片将上传并生成 URL，可跨设备访问；否则仅存本地。</p>
       </label>
-      <div class="flex gap-2">
-        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold flex-1">${d.isNew?"添加":"保存"}</button>
-        <button type="button" id="menu-cancel-btn" class="bg-gray-500 text-white px-4 py-2 rounded flex-1">取消</button>
+      <div class="flex gap-2 sticky bottom-0 bg-white z-10 mt-3">
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded font-bold flex-1 text-sm">${d.isNew?"添加":"保存"}</button>
+        <button type="button" id="menu-cancel-btn" class="bg-gray-500 text-white px-4 py-2 rounded flex-1 text-sm">取消</button>
       </div>
     </form>
   </div>
@@ -739,7 +829,7 @@ function renderDishDetailDialog() {
     const imgSrc = (d.img || '').trim() ? d.img : (getMenuImageFromLocal(d.id) || 'https://via.placeholder.com/200?text='+encodeURIComponent(d.name));
     return `
   <div class="fixed bg-black bg-opacity-40 z-50 left-0 top-0 right-0 bottom-0 flex justify-center items-center p-4 overflow-y-auto">
-    <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-6 my-8 relative">
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-6 my-8 relative max-h-[85vh] overflow-y-auto">
       <button id="dish-detail-close" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">×</button>
       <div class="text-center mb-4">
         <img src="${imgSrc}" alt="${d.name}" class="w-40 h-40 object-cover rounded-lg mx-auto border" />
@@ -747,37 +837,54 @@ function renderDishDetailDialog() {
       <h2 class="text-2xl font-bold mb-2 text-center">${d.name}</h2>
       <div class="text-red-600 font-bold text-center text-2xl mb-4">¥${d.price}</div>
       
-      <div class="mb-4 p-3 bg-blue-50 rounded-lg">
-        <p class="text-sm text-gray-700"><strong>📝 介绍：</strong> ${d.description}</p>
+      <div class="mb-3 p-3 bg-blue-50 rounded-lg">
+        <p class="text-sm text-gray-700"><strong>📝 介绍：</strong></p>
+        <p class="text-xs text-gray-600 mt-1">${d.description||'暂无说明'}</p>
       </div>
       
-      <div class="mb-4 p-3 bg-green-50 rounded-lg">
+      <div class="mb-3 p-3 bg-green-50 rounded-lg">
         <p class="text-sm text-gray-700"><strong>🍳 制作方法：</strong></p>
-        <p class="text-xs text-gray-600 mt-1">${d.method}</p>
+        <p class="text-xs text-gray-600 mt-1 whitespace-pre-wrap">${d.method||'暂无说明'}</p>
       </div>
       
-      <div class="mb-4 p-3 bg-yellow-50 rounded-lg">
+      <div class="mb-3 p-3 bg-yellow-50 rounded-lg">
         <p class="text-sm text-gray-700"><strong>🥘 原材料：</strong></p>
-        <p class="text-xs text-gray-600 mt-1">${d.ingredients}</p>
+        <p class="text-xs text-gray-600 mt-1">${d.ingredients||'暂无信息'}</p>
       </div>
       
-      ${d.options && d.options.length > 0 ? `
-        <div class="mb-4 p-3 bg-purple-50 rounded-lg">
-          <p class="text-sm font-bold mb-2">🎯 选项：</p>
-          <div class="space-y-1">
-            ${d.options.map((opt, idx) => `
-              <label class="flex items-center text-sm">
-                <input type="checkbox" class="dish-option" data-option="${opt.name}" data-price="${opt.price||0}" value="${idx}" />
-                <span class="ml-2">${opt.name}</span>
-                ${opt.price ? `<span class="ml-auto text-xs text-gray-600">+¥${opt.price}</span>` : ''}
-              </label>
-            `).join('')}
-          </div>
-        </div>
-      ` : ''}
+      ${d.spicy ? `<div class="mb-3 p-3 bg-orange-50 rounded-lg border border-orange-200"><p class="text-sm text-gray-700"><strong>🌶️ 辣度建议：</strong> <span class="text-orange-600 font-semibold">${d.spicy}</span></p></div>` : ''}
+      ${d.taste ? `<div class="mb-3 p-3 bg-pink-50 rounded-lg border border-pink-200"><p class="text-sm text-gray-700"><strong>👅 口味：</strong> <span class="text-pink-600 font-semibold">${d.taste}</span></p></div>` : ''}
       
-      <button id="dish-detail-add-btn" data-id="${d.id}" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg mt-4 transition transform hover:scale-105">
-        加入购物车
+      <div class="mb-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+        <p class="text-sm font-bold mb-3 text-purple-900">🍴 您的选择（可多选）：</p>
+        <div class="space-y-2">
+          <label class="flex items-center text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition">
+            <input type="checkbox" class="dish-option w-4 h-4 rounded" data-option="加辣" data-price="0" />
+            <span class="ml-3 flex-1 font-medium text-gray-800">加辣</span>
+            <span class="text-xs text-gray-400">免费</span>
+          </label>
+          <label class="flex items-center text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition">
+            <input type="checkbox" class="dish-option w-4 h-4 rounded" data-option="香菜多" data-price="0" />
+            <span class="ml-3 flex-1 font-medium text-gray-800">香菜多</span>
+            <span class="text-xs text-gray-400">免费</span>
+          </label>
+          <label class="flex items-center text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition">
+            <input type="checkbox" class="dish-option w-4 h-4 rounded" data-option="葱多点" data-price="0" />
+            <span class="ml-3 flex-1 font-medium text-gray-800">葱多点</span>
+            <span class="text-xs text-gray-400">免费</span>
+          </label>
+          ${d.options && d.options.map((opt, idx) => `
+            <label class="flex items-center text-sm cursor-pointer hover:bg-purple-100 p-2 rounded transition">
+              <input type="checkbox" class="dish-option w-4 h-4 rounded" data-option="${opt.name}" data-price="${opt.price||0}" value="${idx}" />
+              <span class="ml-3 flex-1 font-medium text-gray-800">${opt.name}</span>
+              ${opt.price ? `<span class="text-xs text-red-600 font-bold">+¥${opt.price}</span>` : '<span class="text-xs text-gray-400">免费</span>'}
+            </label>
+          `).join('') || ''}
+        </div>
+      </div>
+      
+      <button id="dish-detail-add-btn" data-id="${d.id}" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg mt-4 transition transform hover:scale-105 active:scale-95 shadow-lg">
+        ✅ 加入购物车
       </button>
     </div>
   </div>
@@ -809,6 +916,15 @@ function attachKitchenEventListeners() {
     const trashTabBtn = document.getElementById('kitchen-tab-trash');
     if (ordersTabBtn) ordersTabBtn.onclick = () => { state.kitchenTab = 'orders'; renderApp(); };
     if (trashTabBtn) trashTabBtn.onclick = () => { state.kitchenTab = 'trash'; renderApp(); };
+    
+    // 厨房订单日期折叠
+    document.querySelectorAll('.kitchen-date-btn').forEach(btn => {
+        btn.onclick = () => {
+            const date = btn.dataset.date;
+            state.collapsedOrderDates[date] = !state.collapsedOrderDates[date];
+            renderApp();
+        };
+    });
     
     // 订单操作（开始制作、标记完成）
     document.querySelectorAll('.order-action-btn').forEach(btn=>{
