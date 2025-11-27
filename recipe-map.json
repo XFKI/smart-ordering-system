@@ -1,0 +1,125 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-11-28T00:00:00Z",
+  "recipes": {
+    "1": {
+      "name": "全能炒面",
+      "price": 19,
+      "stock": 99,
+      "category": "主食",
+      "img_url": "images/全能炒面.jpg"
+    },
+    "2": {
+      "name": "可乐鸡翅",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/可乐鸡翅.jpg"
+    },
+    "3": {
+      "name": "小蒋炒米粉",
+      "price": 19,
+      "stock": 99,
+      "category": "主食",
+      "img_url": "images/小蒋炒米粉.jpg"
+    },
+    "4": {
+      "name": "清炒时蔬",
+      "price": 19,
+      "stock": 99,
+      "category": "素菜",
+      "img_url": "images/清炒时蔬.jpg"
+    },
+    "5": {
+      "name": "焦香排骨",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/焦香排骨.jpg"
+    },
+    "6": {
+      "name": "爆辣猪耳",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/爆辣猪耳.jpg"
+    },
+    "7": {
+      "name": "独门炒饭",
+      "price": 19,
+      "stock": 99,
+      "category": "主食",
+      "img_url": "images/独门炒饭.jpg"
+    },
+    "8": {
+      "name": "粉藕排骨汤",
+      "price": 19,
+      "stock": 99,
+      "category": "汤品",
+      "img_url": "images/粉藕排骨汤.jpg"
+    },
+    "9": {
+      "name": "老干妈炒火腿",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/老干妈炒火腿.jpg"
+    },
+    "10": {
+      "name": "蒋氏红烧肉",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/蒋氏红烧肉.jpg"
+    },
+    "11": {
+      "name": "虫草花炖鸡汤",
+      "price": 19,
+      "stock": 99,
+      "category": "汤品",
+      "img_url": "images/虫草花炖鸡汤.jpg"
+    },
+    "12": {
+      "name": "辣椒肉末盖码粉",
+      "price": 19,
+      "stock": 99,
+      "category": "主食",
+      "img_url": "images/辣椒肉末盖码粉.jpg"
+    },
+    "13": {
+      "name": "酸萝卜牛肚",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/酸萝卜牛肚.jpg"
+    },
+    "14": {
+      "name": "酸辣土豆丝",
+      "price": 19,
+      "stock": 99,
+      "category": "素菜",
+      "img_url": "images/酸辣土豆丝.jpg"
+    },
+    "15": {
+      "name": "酸辣藕丁",
+      "price": 19,
+      "stock": 99,
+      "category": "素菜",
+      "img_url": "images/酸辣藕丁.jpg"
+    },
+    "16": {
+      "name": "青椒炒蛋",
+      "price": 19,
+      "stock": 99,
+      "category": "主菜",
+      "img_url": "images/青椒炒蛋.jpg"
+    },
+    "17": {
+      "name": "鲜香鱼汤",
+      "price": 19,
+      "stock": 99,
+      "category": "汤品",
+      "img_url": "images/鲜香鱼汤.jpg"
+    }
+  }
+}
