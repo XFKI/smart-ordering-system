@@ -10,7 +10,7 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4f46e5">
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7;}
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
     .custom-scroll::-webkit-scrollbar { width: 6px; }
     .custom-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
     .loader {
@@ -21,26 +21,27 @@
       height: 30px;
       animation: spin 1s linear infinite;
     }
-    @keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
-    body.kitchen #bottom-nav {display: none !important;}
-    /* Modern UI tweaks */
-    .card-raise { transition: transform .12s ease, box-shadow .12s ease; }
-    .card-raise:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(16,24,40,0.08); }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    body.kitchen #bottom-nav { display: none !important; }
+    
+    /* 优化的过渡效果 - 更短的动画时间 */
     #bottom-nav { border-top-left-radius: 12px; border-top-right-radius: 12px; }
-    #bottom-nav .tab-btn { padding-top: .5rem; padding-bottom: .5rem; transition: all .2s ease; position: relative; }
+    #bottom-nav .tab-btn { padding-top: .5rem; padding-bottom: .5rem; transition: color 0.15s ease; position: relative; }
     #bottom-nav .tab-btn .block { font-size: 1.25rem; }
-    /* Notification toast */
+    
+    /* 精简的通知提示 */
     .notification-toast {
       position: fixed;
       top: 20px;
       right: 20px;
-      padding: 16px 24px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 12px 16px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       font-weight: 600;
+      font-size: 14px;
       color: white;
       z-index: 9999;
-      animation: slideIn 0.3s ease;
+      animation: slideIn 0.2s ease;
     }
     .notification-toast.success { background-color: #10b981; }
     .notification-toast.info { background-color: #3b82f6; }
@@ -48,16 +49,13 @@
     .notification-toast.error { background-color: #ef4444; }
     @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }
-    .notification-toast.out { animation: slideOut 0.3s ease forwards; }
-    /* Modern card animation and hover effect */
-    .card-raise {
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .card-raise:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-    /* Responsive improvements for mobile */
+    .notification-toast.out { animation: slideOut 0.2s ease forwards; }
+    
+    /* 简化的卡片效果 - 只在必要时动画 */
+    .card-raise { transition: box-shadow 0.1s ease; }
+    .card-raise:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    
+    /* 响应式优化 */
     @media (max-width: 640px) {
       body { font-size: 14px; }
       header { padding: 12px; }
@@ -65,14 +63,27 @@
       main#content-area { padding: 8px; padding-bottom: 80px; }
       #bottom-nav { padding: 0; }
     }
-    /* Text truncation helper */
+    
+    /* 文本截断 */
+    .line-clamp-1 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .line-clamp-2 {
       display: -webkit-box;
       -webkit-line-clamp: 2;
       line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
+    
+    /* 防止layout shift和图片闪烁 */
+    img { background-color: #f3f4f6; }
   </style>
 </head>
 <body>
