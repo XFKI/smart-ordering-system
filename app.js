@@ -1598,12 +1598,12 @@ window.onload = async () => {
     
     // 使用本地菜品数据（优先级高于云端）
     state.menu = JSON.parse(JSON.stringify(initialMenu));
-    state.orders = [];
+    
+    // 从云端加载订单数据
+    const cloud = await loadRemoteData();
+    state.orders = (Array.isArray(cloud.orders) && cloud.orders.length > 0) ? cloud.orders : [];
+    
     state.isLoaded = true;
-    
-    // 立即保存到云端以同步
-    await saveRemoteData();
-    
     renderApp();
     
     setInterval(checkRemoteUpdates, 5000);
