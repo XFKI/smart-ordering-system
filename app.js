@@ -1596,11 +1596,11 @@ window.onload = async () => {
     document.getElementById('customer-view-btn').onclick = ()=>{state.currentView="customer"; renderApp();}
     document.getElementById('kitchen-view-btn').onclick = ()=>{state.currentView="kitchen"; renderApp();}
     
-    // 使用本地菜品数据（优先级高于云端）
-    state.menu = JSON.parse(JSON.stringify(initialMenu));
-    
-    // 从云端加载订单数据
+    // 从云端加载数据
     const cloud = await loadRemoteData();
+    
+    // 如果云端有菜品和订单数据就使用，否则使用初始数据
+    state.menu = (Array.isArray(cloud.menu) && cloud.menu.length > 0) ? cloud.menu : JSON.parse(JSON.stringify(initialMenu));
     state.orders = (Array.isArray(cloud.orders) && cloud.orders.length > 0) ? cloud.orders : [];
     
     state.isLoaded = true;
